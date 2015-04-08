@@ -85,7 +85,6 @@ class ListViewTest(TestCase):
     def test_POST_redirects_to_list_view(self):
         other_list = List.objects.create()
         correct_list = List.objects.create()
-        print("correct_id: " + str(correct_list.id))
 
         response = self.client.post(
             '/lists/%d/' % (correct_list.id,),
