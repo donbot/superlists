@@ -28,9 +28,9 @@ ALLOWED_HOSTS = []
 
 # Authentication Settings
 AUTH_USER_MODEL = 'accounts.User'
-AUTHENTICATION_BACKENDS = {
+AUTHENTICATION_BACKENDS = (
     'accounts.authentication.PersonaAuthenticationBackend',
-}
+)
 
 # Application definition
 
