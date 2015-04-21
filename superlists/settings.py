@@ -28,11 +28,6 @@ TEMPLATE_DEBUG = True
 DOMAIN = "localhost"
 ALLOWED_HOSTS = [DOMAIN,]
 
-# Authentication Settings
-AUTH_USER_MODEL = 'accounts.User'
-AUTHENTICATION_BACKENDS = (
-    'accounts.authentication.PersonaAuthenticationBackend',
-)
 
 # Application definition
 
@@ -45,7 +40,15 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'lists',
     'accounts',
+    'functional_tests',
 )
+
+# Authentication Settings
+AUTH_USER_MODEL = 'accounts.User'
+AUTHENTICATION_BACKENDS = (
+    'accounts.authentication.PersonaAuthenticationBackend',
+)
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
