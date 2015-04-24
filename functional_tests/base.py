@@ -7,6 +7,10 @@ from .server_tools import reset_database
 import os
 from datetime import datetime
 
+import time
+from selenium.common.exceptions import WebDriverException
+
+DEFAULT_WAIT = 5
 SCREEN_DUMP_LOCATION = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), 'screendumps'
 )
@@ -84,6 +88,15 @@ class FunctionalTest(StaticLiveServerTestCase):
             windowid=self._windowid,
             timestamp=timestamp
         )
+
+    def wait_for(self, function_with_assertion, timeout=DEFAULT_WAIT):
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            try:
+                return function_with_assertion()
+            except (AssertionError, WebDriverException):
+                time.sleep(0.1)
+        return function_with_assertion()
 
 
     def wait_for_element_with_id(self, element_id):
